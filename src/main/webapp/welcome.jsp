@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.login.Users" %>
+<%@ page import="static com.example.dao.UsersDAO.users" %><%--
   Created by IntelliJ IDEA.
   User: hp
   Date: 20/10/2025
@@ -15,7 +16,9 @@
 <body bgcolor="#dcdcdc">
 
 <%
-    if (session.getAttribute("uname")==null){
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+
+    if (session.getAttribute("uname") == null) {
         response.sendRedirect("login.jsp");
     }
 %>
@@ -23,9 +26,22 @@ debugging...<br>
 
 
 welcome to debugging mode...<br>
-<c:set var = "joshua" value = "${fn:toUpperCase(var)}"/>
+<c:set var="joshua" value="${fn:toUpperCase(var)}"/>
 WELCOME, ${fn:toUpperCase(uname)}
-</body><br><br>
+</body>
+<br><br>
+
+<br>
+
+<%
+    for (Users x : users) {
+        response.getWriter().println(x.id + "......." + x.username + ".........." + x.password);
+    }
+%>
+
+<br>
+
+
 <a href="videos.jsp">Videos</a><br>
 
 <form action="logout">

@@ -12,15 +12,28 @@
 </head>
 <body bgcolor="navy">
 <%
+
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+
     if (session.getAttribute("uname")==null){
         response.sendRedirect("login.jsp");
     }
 %>
 
-<h1>Videos</h1>
-<h6>welcome to the videos section, ${uname}.</h6><br>
+<center>
+    <h1>Videos</h1>
+    <h6>welcome to the videos section, ${uname}.</h6><br>
 
-Video is loading... :)
+    Video is loading... :)
+    <br>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4XTsAAHW_Tc?si=UBaPbr50HBDf-HOR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <br>
+    <form action="logout">
+        <input type="submit" value="Logout">
+    </form>
+</center>
+
 
 </body>
 </html>
