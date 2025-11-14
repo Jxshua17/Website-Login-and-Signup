@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: hp
-  Date: 27/10/2025
-  Time: 12:52
+  Date: 14/11/2025
+  Time: 16:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sign Up</title>
+    <title>Password Error</title>
 </head>
 <body>
 
-<h3>would you want to sign up instead?</h3>
+<h3>There was an error with the passwords you inputted. Please, sign up again.</h3>
 
 <form action="signup" method="post">
     Username: <input type="text" name="username1"><br>
