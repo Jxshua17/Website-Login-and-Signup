@@ -13,7 +13,9 @@
 <body>
 <h1>Welcome</h1><br>
 <h4>Please, log in below</h4><br><br>
-
+<%
+    //TODO create a different input in the form for signing up straight away instead of doing there through the login page
+%>
 <form action="login">
   Username: <input type="text" name="username"><br>
   password: <input type="password" name="password"><br>

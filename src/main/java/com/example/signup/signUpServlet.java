@@ -2,6 +2,9 @@ package com.example.signup;
 
 import com.example.dao.Jdbc;
 import com.example.entities.Usxrs;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,17 +27,20 @@ public class signUpServlet extends HttpServlet {
         String password1 = req.getParameter("password1");
         String password2 = req.getParameter("password2");
 
-        Jdbc inputData = new Jdbc();
+        //Jdbc inputData = new Jdbc();
 
-        //TODO first thing to do is to try and use a random method for creating the id of the new user
-        //TODO second thing(option more like) is fetching the total number of users in the dB and then adding one to that number and using that as the id of the new user
+        //TODO first thing to do is to try and use a random method for creating the id of the new user -> there is no need for this since i implemented the second TODO.
 
-        /*Usxrs user = new Usxrs();
+        //TODO second thing(option more like) is fetching the total number of users in the dB and then adding one to that number and using that as the id of the new user -> implemented.
+
+        //TODO it just occurred to me while testing this that it'll make sense to check the database first for the username first before then saving but i guess the merge method already does that.
+
+        Usxrs user = new Usxrs();
         user.setUsername(username1);
-        user.setPassword(password1);*/
+        user.setPassword(password1);
 
 
-        /*Configuration config = new Configuration();
+        Configuration config = new Configuration();
         config.configure();
         config.addAnnotatedClass(Usxrs.class);
 
@@ -43,29 +49,33 @@ public class signUpServlet extends HttpServlet {
 
         Transaction tx = session.beginTransaction();
 
-        session.merge(user);
+        //getting the count worked in the hibernate project, now to test it out here.
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Usxrs> root = cq.from(Usxrs.class);
+
+        cq.select(cb.count(root));
+
+        Long count = session.createQuery(cq).getSingleResult(); //you never know the amount of users so it has to be Long to accommodate a much larger amount.
+
+        Long userId = count+1;
+        user.setId(userId);
+
+        if(password1.equals(password2)){
+            session.merge(user);
+
+            HttpSession httpSession = req.getSession();
+            httpSession.setAttribute("username", username1);
+
+            resp.sendRedirect("welcome.jsp");
+        } else{
+            resp.sendRedirect("signUpError.jsp");
+        }
 
         tx.commit();
 
         sessionFactory.close();
-        session.close();*/
-
-        try {
-            if(password1.equals(password2)){
-                inputData.insertValue(username1, password1);
-                /*HttpSession session = req.getSession();
-                session.setAttribute("username1", username1);
-                session.setAttribute("password1", password1);*/
-                //i think i created this session because i wanted to create a jsp that was going to confirm the passwords before inserting it into the database.
-                //as far as this is concerned, i don't really need a session because i will not be sending data to the welcome jsp.
-
-                resp.sendRedirect("welcome.jsp");
-            } else{
-                resp.sendRedirect("signUpError.jsp");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        session.close();
     }
 }
 

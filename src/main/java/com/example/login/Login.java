@@ -62,20 +62,5 @@ public class Login extends HttpServlet {
             e.printStackTrace();
         }
 
-
-        /*try {
-            if(db.check(uname, password)){
-                HttpSession session = req.getSession();
-                session.setAttribute("uname", uname);
-                session.setAttribute("pass", password);
-
-                res.sendRedirect("welcome.jsp");
-            } else{
-                res.sendRedirect("signUp.jsp");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
-
     }
 }

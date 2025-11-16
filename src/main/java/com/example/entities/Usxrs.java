@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity(name = "users")
 public class Usxrs {
 
-    private int id;
+    private Long id;
 
     @Id
     private String username;
@@ -29,11 +29,11 @@ public class Usxrs {
         this.password = password;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
