@@ -1,12 +1,17 @@
 package com.example.signup;
 
 import com.example.dao.Jdbc;
+import com.example.entities.Usxrs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -20,6 +25,30 @@ public class signUpServlet extends HttpServlet {
         String password2 = req.getParameter("password2");
 
         Jdbc inputData = new Jdbc();
+
+        //TODO first thing to do is to try and use a random method for creating the id of the new user
+        //TODO second thing(option more like) is fetching the total number of users in the dB and then adding one to that number and using that as the id of the new user
+
+        /*Usxrs user = new Usxrs();
+        user.setUsername(username1);
+        user.setPassword(password1);*/
+
+
+        /*Configuration config = new Configuration();
+        config.configure();
+        config.addAnnotatedClass(Usxrs.class);
+
+        SessionFactory sessionFactory = config.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        session.merge(user);
+
+        tx.commit();
+
+        sessionFactory.close();
+        session.close();*/
 
         try {
             if(password1.equals(password2)){
@@ -39,3 +68,5 @@ public class signUpServlet extends HttpServlet {
         }
     }
 }
+
+

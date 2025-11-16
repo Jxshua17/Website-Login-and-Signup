@@ -34,6 +34,7 @@ WELCOME, ${fn:toUpperCase(uname)}
 <br>
 
 <%
+    //there is no point of this scriplet, future joshua. i am just leaving it here so you can see your initial attempts at a solution for checking the password of a user.
     for (Users x : users) {
         response.getWriter().println(x.id + "......." + x.username + ".........." + x.password);
     }

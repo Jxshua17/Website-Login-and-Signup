@@ -5,6 +5,9 @@ import java.sql.*; //step1-> import the package.
 import java.util.ArrayList;
 import java.util.List;
 
+
+//there is actually no use for this bunch of code. before stumbling upon how Navin checked...
+//...the passwords of users before they are logged in, this was my attempt at a solution.
 public class UsersDAO {
 
     public static List<Users> users = new ArrayList<>();
