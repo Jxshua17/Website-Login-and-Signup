@@ -14,12 +14,17 @@
 <h1>Welcome</h1><br>
 <h4>Please, log in below</h4><br><br>
 <%
-    //TODO create a different input in the form for signing up straight away instead of doing there through the login page
+    //TODO create a different input in the form for signing up straight away instead of doing there through the login page -> implemented
 %>
 <form action="login">
   Username: <input type="text" name="username"><br>
   password: <input type="password" name="password"><br>
   <input type="submit" value="login">
+</form>
+
+<form action="signUp.jsp">
+    Are you a new user? if yes, sign up<br>
+    <input type="submit" value="Sign up">
 </form>
 
 </body>
