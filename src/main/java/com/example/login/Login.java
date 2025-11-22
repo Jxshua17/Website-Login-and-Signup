@@ -39,14 +39,11 @@ public class Login extends HttpServlet {
             if(user == null){
                 res.sendRedirect("signUp.jsp");
             } else{
-                //assert user != null;
-                String tempUsername = user.getUsername();
                 String tempPassword = user.getPassword();
 
                 System.out.println("the password of this user is "+ tempPassword);
 
-                if(uname.equals(tempUsername) && password.equals(tempPassword)){
-
+                if(password.equals(tempPassword)){
                     HttpSession session = req.getSession();
                     session.setAttribute("uname", uname);
                     session.setAttribute("pass", password); //i am questioning the relevance of this line because it is not really needed in  the welcome.jsp file
@@ -54,6 +51,7 @@ public class Login extends HttpServlet {
 
                     res.sendRedirect("welcome.jsp");
                 }
+
                 //TODO i just noticed a huge issue with my code, what happens if the user's login details are incorrect.
 
                 else {
