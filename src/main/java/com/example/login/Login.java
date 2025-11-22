@@ -54,6 +54,11 @@ public class Login extends HttpServlet {
 
                     res.sendRedirect("welcome.jsp");
                 }
+                //TODO i just noticed a huge issue with my code, what happens if the user's login details are incorrect.
+
+                else {
+                    res.sendRedirect("login.jsp");
+                }
             }
 
 
